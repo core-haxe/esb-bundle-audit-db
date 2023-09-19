@@ -1,0 +1,17 @@
+{
+    "bundles": {
+        "bundle-audit-db": {
+            "name": "bundle-audit-db",
+            "bundle-file": "bundle-audit-db",
+            "prefixes": {
+                "audit-db": {
+                    "consumer": {
+                        "class": "esb.bundles.core.audit.db.AuditDbConsumer"
+                    }
+                }
+            },
+            "properties": {
+            }
+        }
+    }
+}

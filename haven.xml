@@ -1,0 +1,36 @@
+<project>
+    <group>esb::bundle</group>
+    <name>audit-db</name>
+    <version>0.0.0</version>
+
+    <commands>
+        <copy-config>
+            <copy-file source="${baseDir}/bundle-audit-db.json" destination="${configDir}/bundle-audit-db.json" />
+        </copy-config>
+        <build>
+            <haxe target="js" output="${buildDir}/bundle-audit-db.js" main="esb.core.BundleLoader" cleanUp="false" outputFilename="nodejs.hxml">
+                <dependencies>
+                    <dependency>promises</dependency>
+                    <dependency>hxnodejs</dependency>
+                    <dependency>db-core</dependency>
+                    <dependency>db-sqlite</dependency>
+                </dependencies>
+                <class-paths>
+                    <class-path>src</class-path>
+                    <class-path>${rootDir}/esb/common/esb-common</class-path>
+                    <class-path>${rootDir}/esb/core/esb-core</class-path>
+                    <class-path>${rootDir}/esb/core/esb-logging</class-path>
+                    <class-path>${rootDir}/esb/core/esb-config</class-path>
+                </class-paths>
+                <compiler-args>
+                    <compiler-arg>--macro include('esb.bundles.core.audit.db')</compiler-arg>
+                    <compiler-arg>--dce full</compiler-arg>
+                    <compiler-arg>-cmd haxelib run haven copy-config</compiler-arg>
+                </compiler-args>
+                <compiler-defines>
+                    <compiler-define>no-deprecation-warnings</compiler-define>
+                </compiler-defines>
+            </haxe>
+        </build>
+    </commands>
+</project>
